@@ -1,5 +1,31 @@
-<div class="container">
+<div v-if="newsList" class="container">
+    <b-modal v-on:ok="changeNewsVisibilityById" v-on:hidden="cancelChange" id="showNewsModal" title="Save changes?">
+        <div class="d-block text-center">
+            <h3>Do you want to <span v-if="!showNews(changingId)">show</span><span v-if="showNews(changingId)">hide</span> "{{changingTitle}}" news?</h3>
+        </div>
+    </b-modal>
     <router-link to="/admin">Admin</router-link>
-    {{isOk()}}
-    {{abc}}
+    <div class="row filters">
+        <div class="col-md-12">
+            <span>Atlaisit:</span>
+            <span>
+                <input type="radio" name="filter" class="hidden-radio" id="all" value="0" v-model="newsFilter">
+                <label class="btn btn-light" v-bind:class="{ active: newsFilter == 0 }" for="all">Visi</label>
+            </span>
+            <span v-for="filter in filterList">
+                <input type="radio" name="filter" class="hidden-radio" v-bind:id="filter" v-bind:value="filter" v-model="newsFilter" autocomplete="off">
+                <label class="btn btn-light" v-bind:class="{ active: newsFilter == filter }" v-bind:for="filter">{{ filter }}</label>
+            </span>
+
+        </div>
+    </div>
+	<div class="row">
+        <div class="col-md-3 col-sm-6" v-for="news in newsList" v-if="newsShownInList(news.id)">
+            <div class="remove-btn" v-b-modal.showNewsModal v-on:click="saveNewsVisibilityId(news.id)">X</div>
+            <a class="news-link" v-bind:href="news.url">
+                <img v-bind:src="news.pictures['676x385']" alt="">
+                <h5>{{news.title}}</h5>
+            </a>
+        </div>
+    </div>
 </div>

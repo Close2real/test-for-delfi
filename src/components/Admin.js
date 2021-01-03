@@ -1,9 +1,10 @@
 import { __decorate } from "tslib";
-import { Component, Vue } from 'vue-property-decorator';
+import { Component } from 'vue-property-decorator';
 import WithRender from '../views/admin.html';
-let Admin = class Admin extends Vue {
-    constructor() {
-        super();
+import Core from './Core';
+let Admin = class Admin extends Core {
+    async mounted() {
+        this.onMount();
     }
 };
 Admin = __decorate([

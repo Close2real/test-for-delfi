@@ -1,12 +1,14 @@
-import { Component, Vue } from 'vue-property-decorator';
+import {Component} from 'vue-property-decorator';
 import WithRender from '../views/admin.html';
+import News from '../domains/News';
+import Core from './Core';
 
 @WithRender
 @Component
-export default class Admin extends Vue {
-
-    constructor()
+export default class Admin extends Core
+{
+    async mounted()
     {
-        super();
+        this.onMount();
     }
 }

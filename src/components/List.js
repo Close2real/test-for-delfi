@@ -1,14 +1,29 @@
 import { __decorate } from "tslib";
-import { Component, Vue } from 'vue-property-decorator';
+import { Component } from 'vue-property-decorator';
 import WithRender from '../views/list.html';
-let Admin = class Admin extends Vue {
-    constructor() {
-        super();
-        this.newsList = [];
-        this.abc = 123;
+import Core from './Core';
+import '../scss/list.css';
+let Admin = class Admin extends Core {
+    async mounted() {
+        this.onMount();
     }
-    isOk() {
-        return 'pew pew';
+    newsShownInList(id) {
+        if (this.showList.includes(id)) {
+            if (this.newsFilter == 0)
+                return true;
+            else {
+                let found = false;
+                this.newsList.map((news) => {
+                    if (news.channel_id == this.newsFilter && news.id == id) {
+                        found = true;
+                        return;
+                    }
+                });
+                return found;
+            }
+        }
+        else
+            return false;
     }
 };
 Admin = __decorate([

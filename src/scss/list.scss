@@ -1,0 +1,46 @@
+.hidden-radio
+{
+    position: absolute;
+    clip: rect(0,0,0,0);
+    pointer-events: none;
+}
+
+.filters
+{
+    margin-bottom: 15px;
+}
+
+.news-link
+{
+    img
+    {
+        width: 100%;
+    }
+
+    h5
+    {
+        color: #000;
+    }
+
+    &:hover
+    {
+        text-decoration: none;
+    }
+}
+
+.remove-btn
+{
+    position: absolute;
+    right: 0px;
+    top: -15px;
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    background-color: #bfbfbf;
+    text-align: center;
+    line-height: 28px;
+    z-index: 10;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    outline: none;
+}

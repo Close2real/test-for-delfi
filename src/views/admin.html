@@ -1,3 +1,29 @@
-<div class="container">
+<div v-if="newsList" class="container">
+    <b-modal v-on:ok="changeNewsVisibilityById" v-on:hidden="cancelChange" id="showNewsModal" title="Save changes?">
+        <div class="d-block text-center">
+            <h3>Do you want to <span v-if="!showNews(changingId)">show</span><span v-if="showNews(changingId)">hide</span> "{{changingTitle}}" news?</h3>
+        </div>
+    </b-modal>
     <router-link to="/">List</router-link>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Hide/Show</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="news in newsList">
+                    <td>{{news.id}}</td>
+                    <td>{{news.title}}</td>
+                    <td>
+                        <button class="btn btn-primary" v-b-modal.showNewsModal v-if="showNews(news.id)" v-on:click="saveNewsVisibilityId(news.id)">Hide</button>
+                        <button class="btn btn-primary" v-b-modal.showNewsModal v-if="!showNews(news.id)" v-on:click="saveNewsVisibilityId(news.id)">Show</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

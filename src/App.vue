@@ -6,6 +6,5 @@
 
 <script lang="ts">
     import { Component, Vue } from 'vue-property-decorator';
-    import 'bootstrap/dist/css/bootstrap.css';
-    export default class App extends Vue {}
+    export default class App extends Vue {};
 </script>
